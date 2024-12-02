@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+  namenode:
+    image: apache/hadoop:3
+    container_name: namenode
+    hostname: namenode
+    user: root
+    ports:
+      - 9870:9870
+    environment:
+      ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+    env_file:
+      - ./dev.env
+    command: ["hdfs", "namenode"]
+
+  datanode_1:
+    image: apache/hadoop:3
+    container_name: datanode1
+    hostname: datanode1
+    user: root
+    ports:
+      - 9865:9865
+    command: [ "hdfs", "datanode" ]
+    env_file:
+      - ./dev.env
+  
+  datanode_2:
+    image: apache/hadoop:3
+    container_name: datanode2
+    hostname: datanode2
+    user: root
+    ports:
+      - 9864:9864
+    command: [ "hdfs", "datanode" ]
+    env_file:
+      - ./dev.env
