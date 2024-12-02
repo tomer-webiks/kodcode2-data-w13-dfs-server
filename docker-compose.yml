@@ -21,6 +21,8 @@ services:
     user: root
     ports:
       - 9865:9865
+    depends_on:
+      - namenode
     command: [ "hdfs", "datanode" ]
     env_file:
       - ./dev.env
@@ -32,6 +34,8 @@ services:
     user: root
     ports:
       - 9864:9864
+    depends_on:
+      - namenode
     command: [ "hdfs", "datanode" ]
     env_file:
       - ./dev.env
